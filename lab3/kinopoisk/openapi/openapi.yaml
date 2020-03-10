@@ -1,0 +1,42 @@
+openapi: 3.0.0
+info:
+  version: '1.0.0'
+  title: REST API
+  contact:
+    name: Vadym
+    email: ironman50@yandex.ru
+servers:
+  - url: 'https://www.kinopoisk.ru/'
+    description: Live Server
+tags:
+  - name: Film
+    description: |
+      Films available on the server.
+security:
+  - SecretApiKey: []
+  - JWT: []
+paths:
+  'films/{filmID}':
+    $ref: './paths/films@{filmID}.yaml'
+  '/films/{filmID}/gallery':
+    $ref: './paths/films@{filmID}@gallery.yaml'
+  '/films/{filmID}/stuff':
+    $ref: './paths/films@{filmID}@stuff.yaml'
+  '/films/{filmID}/similar':
+    $ref: './paths/films@{filmID}@similar.yaml'
+  '/genres':
+    $ref: './paths/genres.yaml'
+  '/films':
+    $ref: './paths/films.yaml'
+  #'/films/{filmID}/reviews':
+  #  	$ref: './paths/filmReviews@{filmID}.yaml'
+	#'/filmReviews/{filmID}/details/{reviewID}':
+  #  	$ref: './paths/filmReviews@{filmID}@details@{reviewID}.yaml'
+	#'/todayFilms':
+  #  	$ref: './todayFilms.yaml'
+	#'/cinemas':
+  #  	$ref: './cinemas.yaml'
+	#'/cinema/{cinemaID}':
+  #  	$ref: './cinema@{cinemaID}.yaml'
+	#'/searchFilms?keyword={keyword}':
+  #  	$ref: './searchFilms.yaml'

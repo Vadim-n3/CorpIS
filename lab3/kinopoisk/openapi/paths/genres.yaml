@@ -1,0 +1,18 @@
+get:
+  tags:
+    - Genre
+  summary: Retrieve Genres
+  operationId: GetGenre
+  description: |
+    Retrieve Genres
+  responses:
+    '200':
+      description: Genre were retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Genres.yaml
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml

@@ -1,0 +1,30 @@
+type: object
+required:
+  - producer
+  - actor
+  - director
+  - genre
+properties:
+  author:
+    description: Film authors.
+    type: array
+      items: 
+        type: string
+  director:
+    description: Film directors.
+    type: array
+      items: 
+        type: string
+  producer:
+    description: Film producers.
+    type: array
+      items: 
+        type: string
+  actor:
+    description: Film actors.
+    type: array
+      items: 
+        type: string
+  genre:
+    description: Film genres.
+    $ref: Genres.yaml

@@ -1,0 +1,66 @@
+parameters:
+  - $ref: ../components/parameters/resourceId.yaml
+get:
+  tags:
+    - Film
+  summary: Retrieve a Film frames by FilmID
+  operationId: GetFilmGallery
+  description: |
+    Retrieve a Film frames
+  responses:
+    '200':
+      description: Film frames was retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Gallery.yaml
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+put:
+  tags:
+    - Film
+  summary: Create Film frames
+  operationId: PutFilmGallety
+  description: |
+    Create or re-create a Film frames
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Gallery.yaml
+    required: true
+  responses:
+    '200':
+      description: Film stream link was updated
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Gallery.yaml
+    '201':
+      description: Film stream link was created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Gallery.yaml
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '422':
+      $ref: ../components/responses/InvalidDataError.yaml
+delete:
+  tags:
+    - Film
+  summary: Delete Film frames
+  operationId: DeleteFilmGallery
+  description: |
+    Delete Film frames
+  responses:
+    '204':
+      description: Film frames was deleted
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '422':
+      $ref: ../components/responses/InvalidDataError.yaml

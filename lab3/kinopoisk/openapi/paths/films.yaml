@@ -1,0 +1,20 @@
+parameters:
+  - $ref: ../components/parameters/filmGenre.yaml
+get:
+  tags:
+    - Film
+  summary: Retrieve Films list
+  operationId: GetFilms
+  description: |
+    Retrieve films IDs matching the Genre parameter
+  responses:
+    '200':
+      description: Film stream was retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/FilmIdList.yaml
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml

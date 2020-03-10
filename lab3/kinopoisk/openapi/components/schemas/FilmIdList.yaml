@@ -1,0 +1,9 @@
+type: object
+required:
+    - film_id
+properties:
+  film_id:
+    description: Film id array.
+    type: array
+      items: 
+        $ref: FilmId.yaml

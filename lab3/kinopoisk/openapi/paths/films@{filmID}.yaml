@@ -1,0 +1,92 @@
+parameters:
+  - $ref: ../components/parameters/resourceId.yaml
+get:
+  tags:
+    - Film
+  summary: Retrieve a Film steam
+  operationId: GetFilm
+  description: |
+    Retrieve a Film (Film = Film stream link now) with specified identifier string
+  responses:
+    '200':
+      description: Film stream was retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Film.yaml
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+patch:
+  tags:
+    - Film
+  summary: Update a Film stream link
+  operationId: PatchFilm
+  description: >
+    Update a Film stream link
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Film.yaml
+  responses:
+    '200':
+      description: Film stream link was updated
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Film.yaml
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '422':
+      $ref: ../components/responses/InvalidDataError.yaml
+put:
+  tags:
+    - Film
+  summary: Create Film stream link with predefined ID
+  operationId: PutFilm
+  description: |
+    Create or update a Film stream link with predefined identifier string
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/Film.yaml
+    description: Film resource
+    required: true
+  responses:
+    '200':
+      description: Film stream link was updated
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Film.yaml
+    '201':
+      description: Film stream link was created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Film.yaml
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '422':
+      $ref: ../components/responses/InvalidDataError.yaml
+delete:
+  tags:
+    - Film
+  summary: Delete Film stream link
+  operationId: DeleteFilm
+  description: |
+    Delete Film stream link by Film ID
+  responses:
+    '204':
+      description: Film was deleted
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '422':
+      $ref: ../components/responses/InvalidDataError.yaml

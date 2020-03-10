@@ -1,0 +1,17 @@
+{
+  "name": "kinopoisk",
+  "version": "3.0",
+  "description": "API",
+  "main": "index.js",
+  "author": "Vadym",
+  "license": "MIT",
+  "dependencies": {
+    "@redocly/openapi-cli": "^0.8.3",
+    "serve": "^11.3.0"
+  },
+  "scripts": {
+    "start": "openapi preview-docs",
+    "build": "openapi bundle -o dist",
+    "test": "openapi validate"
+  }
+}

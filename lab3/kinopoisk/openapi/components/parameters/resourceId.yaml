@@ -1,0 +1,6 @@
+in: path
+name: filmID
+description: The resource identifier string
+required: true
+schema:
+  $ref: ../schemas/FilmId.yaml

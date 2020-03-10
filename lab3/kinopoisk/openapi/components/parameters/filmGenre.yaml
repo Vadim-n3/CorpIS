@@ -1,0 +1,5 @@
+in: query
+name: genre
+schema:
+  $ref: ../schemas/Genre.yaml
+description: The genre filter

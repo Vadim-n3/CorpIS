@@ -1,0 +1,9 @@
+type: object
+required:
+  - genre
+properties:
+  genre:
+    description: Genres array.
+    type: array
+      items: 
+        $ref: Genre.yaml

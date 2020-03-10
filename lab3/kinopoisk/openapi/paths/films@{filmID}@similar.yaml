@@ -1,0 +1,20 @@
+parameters:
+  - $ref: ../components/parameters/resourceId.yaml
+get:
+  tags:
+    - Film
+  summary: Retrieve a list of Similar films
+  operationId: GetFilmSimilar
+  description: |
+    Retrieve a list of Similar films IDs
+  responses:
+    '200':
+      description: IDs of similar films was retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/FilmIdList.yaml
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml

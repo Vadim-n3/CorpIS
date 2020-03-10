@@ -1,0 +1,66 @@
+parameters:
+  - $ref: ../components/parameters/resourceId.yaml
+get:
+  tags:
+    - Film
+  summary: Retrieve a Film stuff by FilmID
+  operationId: GetFilmStuff
+  description: |
+    Retrieve a Film stuff (actors, authors and etc.)
+  responses:
+    '200':
+      description: Film stuff was retrieved successfully
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/FilmStuff.yaml
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+put:
+  tags:
+    - Film
+  summary: Create Film stuff
+  operationId: PutFilmStuff
+  description: |
+    Create or re-create a Film stuff
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: ../components/schemas/FilmStuff.yaml
+    required: true
+  responses:
+    '200':
+      description: Film stuff was updated
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/Stuff.yaml
+    '201':
+      description: Film stuff was created
+      content:
+        application/json:
+          schema:
+            $ref: ../components/schemas/FilmStuff.yaml
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '404':
+      $ref: ../components/responses/NotFound.yaml
+    '422':
+      $ref: ../components/responses/InvalidDataError.yaml
+delete:
+  tags:
+    - Film
+  summary: Delete Film stuff
+  operationId: DeleteFilmStuff
+  description: |
+    Delete Film stuff
+  responses:
+    '204':
+      description: Film frames was deleted
+    '401':
+      $ref: ../components/responses/AccessForbidden.yaml
+    '422':
+      $ref: ../components/responses/InvalidDataError.yaml
