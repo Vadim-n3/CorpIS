@@ -5,5 +5,5 @@ properties:
   film_id:
     description: Film id array.
     type: array
-      items: 
-        $ref: FilmId.yaml
+    items: 
+      $ref: FilmId.yaml

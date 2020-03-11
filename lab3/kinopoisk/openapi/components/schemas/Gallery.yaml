@@ -5,6 +5,6 @@ properties:
   images:
     description: Film frames.
     type: array
-      items: 
-        type: string
-        format: binary
+    items: 
+      type: string
+      format: binary

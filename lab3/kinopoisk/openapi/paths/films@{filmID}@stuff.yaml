@@ -37,7 +37,7 @@ put:
       content:
         application/json:
           schema:
-            $ref: ../components/schemas/Stuff.yaml
+            $ref: ../components/schemas/FilmStuff.yaml
     '201':
       description: Film stuff was created
       content:
