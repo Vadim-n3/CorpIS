@@ -1,0 +1,468 @@
+openapi: 3.0.0
+info:
+  version: 1.0.0
+  title: REST API
+  contact:
+    name: Vadym
+    email: ironman50@yandex.ru
+servers:
+  - url: 'https://www.kinopoisk.ru/'
+    description: Live Server
+tags:
+  - name: Film
+    description: |
+      Films available on the server.
+security:
+  - SecretApiKey: []
+  - JWT: []
+paths:
+  'films/{filmID}':
+    parameters:
+      - $ref: '#/components/parameters/resourceId'
+    get:
+      tags:
+        - Film
+      summary: Retrieve a Film steam
+      operationId: GetFilm
+      description: >
+        Retrieve a Film (Film = Film stream link now) with specified identifier
+        string
+      responses:
+        '200':
+          description: Film stream was retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      tags:
+        - Film
+      summary: Update a Film stream link
+      operationId: PatchFilm
+      description: |
+        Update a Film stream link
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+      responses:
+        '200':
+          description: Film stream link was updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/InvalidDataError'
+    put:
+      tags:
+        - Film
+      summary: Create Film stream link with predefined ID
+      operationId: PutFilm
+      description: |
+        Create or update a Film stream link with predefined identifier string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Film'
+        description: Film resource
+        required: true
+      responses:
+        '200':
+          description: Film stream link was updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '201':
+          description: Film stream link was created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Film'
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/InvalidDataError'
+    delete:
+      tags:
+        - Film
+      summary: Delete Film stream link
+      operationId: DeleteFilm
+      description: |
+        Delete Film stream link by Film ID
+      responses:
+        '204':
+          description: Film was deleted
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '422':
+          $ref: '#/components/responses/InvalidDataError'
+  '/films/{filmID}/gallery':
+    parameters:
+      - $ref: '#/components/parameters/resourceId'
+    get:
+      tags:
+        - Film
+      summary: Retrieve a Film frames by FilmID
+      operationId: GetFilmGallery
+      description: |
+        Retrieve a Film frames
+      responses:
+        '200':
+          description: Film frames was retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gallery'
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Film
+      summary: Create Film frames
+      operationId: PutFilmGallety
+      description: |
+        Create or re-create a Film frames
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Gallery'
+        required: true
+      responses:
+        '200':
+          description: Film stream link was updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gallery'
+        '201':
+          description: Film stream link was created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Gallery'
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/InvalidDataError'
+    delete:
+      tags:
+        - Film
+      summary: Delete Film frames
+      operationId: DeleteFilmGallery
+      description: |
+        Delete Film frames
+      responses:
+        '204':
+          description: Film frames was deleted
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '422':
+          $ref: '#/components/responses/InvalidDataError'
+  '/films/{filmID}/stuff':
+    parameters:
+      - $ref: '#/components/parameters/resourceId'
+    get:
+      tags:
+        - Film
+      summary: Retrieve a Film stuff by FilmID
+      operationId: GetFilmStuff
+      description: |
+        Retrieve a Film stuff (actors, authors and etc.)
+      responses:
+        '200':
+          description: Film stuff was retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmStuff'
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags:
+        - Film
+      summary: Create Film stuff
+      operationId: PutFilmStuff
+      description: |
+        Create or re-create a Film stuff
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilmStuff'
+        required: true
+      responses:
+        '200':
+          description: Film stuff was updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmStuff'
+        '201':
+          description: Film stuff was created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmStuff'
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/InvalidDataError'
+    delete:
+      tags:
+        - Film
+      summary: Delete Film stuff
+      operationId: DeleteFilmStuff
+      description: |
+        Delete Film stuff
+      responses:
+        '204':
+          description: Film frames was deleted
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '422':
+          $ref: '#/components/responses/InvalidDataError'
+  '/films/{filmID}/similar':
+    parameters:
+      - $ref: '#/components/parameters/resourceId'
+    get:
+      tags:
+        - Film
+      summary: Retrieve a list of Similar films
+      operationId: GetFilmSimilar
+      description: |
+        Retrieve a list of Similar films IDs
+      responses:
+        '200':
+          description: IDs of similar films was retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmIdList'
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /genres:
+    get:
+      tags:
+        - Genre
+      summary: Retrieve Genres
+      operationId: GetGenre
+      description: |
+        Retrieve Genres
+      responses:
+        '200':
+          description: Genre were retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Genres'
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /films:
+    parameters:
+      - $ref: '#/components/parameters/filmGenre'
+    get:
+      tags:
+        - Film
+      summary: Retrieve Films list
+      operationId: GetFilms
+      description: |
+        Retrieve films IDs matching the Genre parameter
+      responses:
+        '200':
+          description: Film stream was retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilmIdList'
+        '401':
+          $ref: '#/components/responses/AccessForbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    FilmId:
+      type: string
+      maxLength: 50
+    Film:
+      type: object
+      required:
+        - link
+      properties:
+        link:
+          description: Film stream link.
+          type: string
+    Error:
+      type: object
+      properties:
+        status:
+          type: integer
+          minimum: 100
+          maximum: 600
+          description: The HTTP status code.
+        error:
+          type: string
+        type:
+          type: string
+          description: >-
+            A URI reference [[RFC3986](https://tools.ietf.org/html/rfc3986)]
+            that identifies the problem type. It should provide human-readable
+            documentation for the problem type. When this member is not present,
+            its value is assumed to be "about:blank".
+        title:
+          type: string
+          description: >-
+            A short, human-readable summary of the problem type. It SHOULD NOT
+            change from occurrence to occurrence of the problem, except for
+            purposes of localization.
+    InvalidError:
+      description: Invalid data was sent
+      allOf:
+        - $ref: '#/components/schemas/Error'
+        - type: object
+          properties:
+            invalidFields:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                    description: >-
+                      The field name. Dot notation is used for nested object
+                      field names.
+                  message:
+                    type: string
+              example:
+                - field: field1
+                  message: field1 is invalid
+                - field: subObject.field2
+                  message: field2 is invalid
+                - field: subObject.field2
+                  message: another error in the field2
+    Gallery:
+      type: object
+      required:
+        - images
+      properties:
+        images:
+          description: Film frames.
+          type: array
+          items:
+            type: string
+            format: binary
+    Genre:
+      type: string
+      enum:
+        - action
+        - history
+        - detective
+    Genres:
+      type: object
+      required:
+        - genre
+      properties:
+        genre:
+          description: Genres array.
+          type: array
+          items:
+            $ref: '#/components/schemas/Genre'
+    FilmStuff:
+      type: object
+      required:
+        - producer
+        - actor
+        - director
+        - genre
+      properties:
+        author:
+          description: Film authors.
+          type: array
+          items:
+            type: string
+        director:
+          description: Film directors.
+          type: array
+          items:
+            type: string
+        producer:
+          description: Film producers.
+          type: array
+          items:
+            type: string
+        actor:
+          description: Film actors.
+          type: array
+          items:
+            type: string
+        genre:
+          $ref: '#/components/schemas/Genres'
+    FilmIdList:
+      type: object
+      required:
+        - film_id
+      properties:
+        film_id:
+          description: Film id array.
+          type: array
+          items:
+            $ref: '#/components/schemas/FilmId'
+  parameters:
+    resourceId:
+      in: path
+      name: filmID
+      description: The resource identifier string
+      required: true
+      schema:
+        $ref: '#/components/schemas/FilmId'
+    filmGenre:
+      in: query
+      name: genre
+      schema:
+        $ref: '#/components/schemas/Genre'
+      description: The genre filter
+  responses:
+    AccessForbidden:
+      description: 'Access forbidden, invalid API-KEY was used'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InvalidDataError:
+      description: Invalid data was sent
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/InvalidError'
